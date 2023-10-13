@@ -24,7 +24,7 @@ public class RestDataConfig implements RepositoryRestConfigurer {
      * Country
      * Customer
      * Division
-     * Excursion
+     * ExcursionRepository
      * Vacation
      * <p>
      * Set page configuration parameters
