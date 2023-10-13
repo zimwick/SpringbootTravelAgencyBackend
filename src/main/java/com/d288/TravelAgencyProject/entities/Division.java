@@ -8,13 +8,16 @@ import org.hibernate.annotations.UpdateTimestamp;
 import java.util.Date;
 
 @Entity
-@Table(name = "cart_items")
+@Table(name = "divisions")
 @Data
-public class cartItems {
+public class Division {
+    @Column(name = "division")
+    private String division;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "cart_item_id")
-    private Long cartItemId;
+    @Column(name = "division_id")
+    private Long divisionId;
 
     @Column(name = "create_date")
     @CreationTimestamp
@@ -24,9 +27,7 @@ public class cartItems {
     @UpdateTimestamp
     private Date lastUpdate;
 
-    @Column(name = "cart_id")
-    private Long cartId;
-
-    @Column(name = "vacation_id")
-    private Long vacationID;
+    @ManyToOne
+    @JoinColumn(name = "country_id", nullable = false)
+    private Country country;
 }

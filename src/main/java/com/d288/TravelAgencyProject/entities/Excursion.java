@@ -7,11 +7,12 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Table(name = "excursions")
 @Data
-public class excursions {
+public class Excursion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "excursion_id")
@@ -34,6 +35,10 @@ public class excursions {
     @UpdateTimestamp
     private Date lastUpdate;
 
-    @Column(name = "vacation_id")
-    private Long vacationId;
+    @ManyToOne
+    @JoinColumn(name = "vacation_id", nullable = false)
+    private Vacation vacation;
+
+    @OneToMany(mappedBy = "excursion", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<ExcursionCartItem> excursionCartItems;
 }

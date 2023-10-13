@@ -6,18 +6,16 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.util.Date;
+import java.util.Set;
 
 @Entity
-@Table(name = "divisions")
+@Table(name = "cart_items")
 @Data
-public class divisions {
-    @Column(name = "division")
-    private String division;
-
+public class CartItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "division_id")
-    private Long divisionId;
+    @Column(name = "cart_item_id")
+    private Long cartItemId;
 
     @Column(name = "create_date")
     @CreationTimestamp
@@ -27,6 +25,16 @@ public class divisions {
     @UpdateTimestamp
     private Date lastUpdate;
 
-    @Column(name = "country_id")
-    private Long countryId;
+    @ManyToOne
+    @JoinColumn(name = "cart_id", nullable = false)
+    private Cart cart;
+
+    @ManyToOne
+    @JoinColumn(name = "vacation_id", nullable = false)
+    private Vacation vacation;
+
+    @OneToMany(mappedBy = "cartItem", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<ExcursionCartItem> excursionCartItems;
+
+
 }

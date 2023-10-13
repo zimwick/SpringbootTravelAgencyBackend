@@ -6,11 +6,12 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Table(name = "customers")
 @Data
-public class customers {
+public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "customer_id")
@@ -39,6 +40,10 @@ public class customers {
     @Column(name = "postal_code")
     private String postalCode;
 
-    @Column(name = "division_id")
-    private Long divisionId;
+    @ManyToOne
+    @JoinColumn(name = "division_id", nullable = false)
+    private Division division;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "customer")
+    private Set<Cart> carts;
 }
