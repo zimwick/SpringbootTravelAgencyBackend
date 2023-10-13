@@ -12,20 +12,20 @@ import java.util.Date;
 @Data
 public class Division {
     @Column(name = "division")
-    private String division;
+    private String division_name;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "division_id")
-    private Long divisionId;
+    private Long id;
 
     @Column(name = "create_date")
     @CreationTimestamp
-    private Date createDate;
+    private Date create_date;
 
     @Column(name = "last_update")
     @UpdateTimestamp
-    private Date lastUpdate;
+    private Date last_update;
 
     @ManyToOne
     @JoinColumn(name = "country_id", nullable = false)
