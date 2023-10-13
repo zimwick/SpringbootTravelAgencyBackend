@@ -16,12 +16,30 @@ public class carts {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "cart_id")
     private Long cartId;
+
     @Column(name = "package_price")
     private BigDecimal packagePrice;
-    @Column(name = "")
+
+    @Column(name = "party_size")
+    private int partySize;
+    private enum Status {
+        PENDING, ORDERED, CANCELED
+    }
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status")
+    private Status status;
+
+    @Column(name = "order_tracking_number")
+    private String orderTrackingNumber;
+
+    @Column(name = "create_date")
+    @CreationTimestamp
+    private Date createDate;
+
+    @Column(name = "last_update")
+    @UpdateTimestamp
     private Date lastUpdate;
-    @Column(name = "cart_id")
-    private Long cartId;
-    @Column(name = "vacation_id")
-    private Long vacationID;
+
+    @Column(name = "customer_id")
+    private Long customerId;
 }
