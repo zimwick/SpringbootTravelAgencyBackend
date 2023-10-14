@@ -24,6 +24,7 @@ public class Cart {
     @Column(name = "party_size")
     private int party_size;
 
+
     private enum StatusType {
         pending, ordered, canceled
     }
