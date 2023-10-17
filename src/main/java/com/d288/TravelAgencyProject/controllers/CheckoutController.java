@@ -24,6 +24,7 @@ public class CheckoutController {
         PurchaseResponse purchaseResponse = checkoutService.placeOrder(purchase);
 
         return purchaseResponse;
+
     }
 
 }
