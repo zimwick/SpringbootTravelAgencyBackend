@@ -16,7 +16,9 @@ import java.util.UUID;
 public class CheckoutServiceImpl implements CheckoutService{
 
     private CustomerRepository customerRepository;
+    //private CartRepository cartRepository;
 
+    @Autowired
     public CheckoutServiceImpl(CustomerRepository customerRepository){
         this.customerRepository = customerRepository;
     }
@@ -34,17 +36,18 @@ public class CheckoutServiceImpl implements CheckoutService{
 
         //populate cart with cartItems
         Set<CartItem> cartItems = purchase.getCartItems();
-        cartItems.forEach(item -> item.setCart(cart));
+        cartItems.forEach(item -> cart.add(item));
 
-        //populate cart with cartitem and customer
-        cart.setCartItem(purchase.getCartItems());
-        cart.setCustomer(purchase.getCustomer());
+        //populate cart with cartItem and customer
+        //cart.setCartItem(purchase.getCartItems());
+        //cart.setCustomer(purchase.getCustomer());
 
         //populate customer with cart
         Customer customer = purchase.getCustomer();
-        cart.setCustomer(customer);
+        customer.add(cart);
 
         //save to database
+        cart.setStatus(Cart.StatusType.ordered);
         customerRepository.save(customer);
 
 

@@ -2,21 +2,25 @@ package com.d288.TravelAgencyProject.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Table(name = "carts")
-@Data
+@Getter
+@Setter
 public class Cart {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "cart_id")
-    private Long Id;
+    private Long id;
 
     @Column(name = "package_price")
     private BigDecimal package_price;
@@ -25,7 +29,7 @@ public class Cart {
     private int party_size;
 
 
-    private enum StatusType {
+    public enum StatusType {
         pending, ordered, canceled
     }
     @Enumerated(EnumType.STRING)
@@ -48,5 +52,15 @@ public class Cart {
     private Customer customer;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "cart")
-    private Set<CartItem> cartItem;
+    private Set<CartItem> cartItem = new HashSet<>();
+
+    public void add (CartItem item){
+        if(item != null){
+            if(cartItem == null){
+                cartItem = new HashSet<>();
+            }
+            cartItem.add(item);
+            item.setCart(this);
+        }
+    }
 }

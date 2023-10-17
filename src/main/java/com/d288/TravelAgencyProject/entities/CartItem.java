@@ -2,6 +2,8 @@ package com.d288.TravelAgencyProject.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -10,7 +12,8 @@ import java.util.Set;
 
 @Entity
 @Table(name = "cart_items")
-@Data
+@Getter
+@Setter
 public class CartItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,5 +40,6 @@ public class CartItem {
     @JoinTable(name = "excursion_cartitem", joinColumns = @JoinColumn(name = "cart_item_id"),
             inverseJoinColumns = @JoinColumn(name = "excursion_id"))
     private Set<Excursion> excursions;
+
 
 }

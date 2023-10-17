@@ -2,6 +2,8 @@ package com.d288.TravelAgencyProject.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -9,7 +11,8 @@ import java.util.Date;
 
 @Entity
 @Table(name = "divisions")
-@Data
+@Getter
+@Setter
 public class Division {
     @Column(name = "division")
     private String division_name;

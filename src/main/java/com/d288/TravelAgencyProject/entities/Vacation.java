@@ -2,6 +2,8 @@ package com.d288.TravelAgencyProject.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -11,7 +13,8 @@ import java.util.Set;
 
 @Entity
 @Table(name = "vacations")
-@Data
+@Getter
+@Setter
 public class Vacation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
