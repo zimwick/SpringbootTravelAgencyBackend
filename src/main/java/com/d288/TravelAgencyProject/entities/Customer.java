@@ -25,7 +25,7 @@ public class Customer {
     @Column(name = "address", nullable = false)
     private String address;
 
-    @Column(name = "create_date")
+    @Column(name = "create_date", updatable = false)
     @CreationTimestamp
     private Date create_date;
 
